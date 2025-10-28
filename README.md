@@ -1,6 +1,11 @@
 # PetStore - Plataforma Web de Tienda de Mascotas
 
-[![deployment in Vercel](https://github.com/valeop/fluffy-deals-hub/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/valeop/fluffy-deals-hub/actions/workflows/ci-cd.yml)
+[![deployment in Vercel](https://github.com/eospgonz10/fluffy-deals-hub/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/eospgonz10/fluffy-deals-hub/actions/workflows/ci-cd.yml)
+[![SonarQube Analysis](https://github.com/eospgonz10/fluffy-deals-hub/actions/workflows/sonarqube.yml/badge.svg)](https://github.com/eospgonz10/fluffy-deals-hub/actions/workflows/sonarqube.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fluffy-deals-hub&metric=alert_status)](https://sonarcloud.io/dashboard?id=fluffy-deals-hub)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fluffy-deals-hub&metric=coverage)](https://sonarcloud.io/dashboard?id=fluffy-deals-hub)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=fluffy-deals-hub&metric=bugs)](https://sonarcloud.io/dashboard?id=fluffy-deals-hub)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=fluffy-deals-hub&metric=code_smells)](https://sonarcloud.io/dashboard?id=fluffy-deals-hub)
 
 Una aplicación web de página única (SPA) para gestión de promociones en una tienda de mascotas, construida con React, TypeScript y Tailwind CSS.
 
@@ -19,9 +24,31 @@ Una aplicación web de página única (SPA) para gestión de promociones en una 
 - ✅ **Persistencia en localStorage**
 - ✅ **Diseño responsivo** y accesible
 - ✅ **Feedback visual** en selección de productos
+- ✅ **Testing completo** con Vitest y Testing Library (54 tests, 100% coverage)
+- ✅ **CI/CD** con GitHub Actions y SonarQube
+
+## 🧪 Testing
+
+Este proyecto cuenta con un framework de testing completo:
+
+- **54 tests unitarios** con patrón AAA (Arrange-Act-Assert)
+- **100% de cobertura** en servicios, hooks y utilidades
+- **Vitest** como test runner (compatible con Jest)
+- **Testing Library** para testing de React
+- **Coverage LCOV** integrado con SonarQube
+
+```bash
+npm test              # Ejecutar tests en modo watch
+npm run test:run      # Ejecutar tests una vez (CI/CD)
+npm run test:ui       # Interfaz visual de tests
+npm run test:coverage # Generar reporte de cobertura
+```
+
+Ver [TESTING.md](./TESTING.md) para más detalles.
 
 ## 🛠️ Stack Tecnológico
 
+### **Frontend**
 - **React 18** - Biblioteca de UI
 - **TypeScript** - Tipado estático
 - **Vite** - Build tool y dev server
@@ -30,6 +57,17 @@ Una aplicación web de página única (SPA) para gestión de promociones en una 
 - **shadcn/ui** - Componentes UI
 - **react-hook-form + zod** - Gestión de formularios y validación
 - **lucide-react** - Iconos
+
+### **Testing**
+- **Vitest** - Test runner (compatible con Jest)
+- **@testing-library/react** - Testing de componentes
+- **@testing-library/jest-dom** - Matchers para DOM
+- **jsdom** - Simulación de DOM
+
+### **CI/CD & Calidad**
+- **GitHub Actions** - Pipeline de CI/CD
+- **SonarQube Cloud** - Análisis de código y cobertura
+- **Vercel** - Deployment automático
 
 ## 📦 Instalación y Ejecución
 

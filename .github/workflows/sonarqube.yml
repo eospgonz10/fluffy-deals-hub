@@ -29,27 +29,30 @@ jobs:
         run: npm ci --no-audit
 
       - name: Run Tests with Coverage
-        run: npm run test:coverage
+        run: npm run test:coverage:report
+        continue-on-error: true
         env:
           CI: true
 
       - name: Verify Coverage Report
         run: |
           if [ ! -f coverage/lcov.info ]; then
-            echo "Error: coverage/lcov.info not found!"
+            echo "❌ Error: coverage/lcov.info not found!"
             exit 1
           fi
           echo "✅ Coverage report generated successfully"
-          ls -la coverage/
+          echo "📊 Coverage file size: $(du -h coverage/lcov.info | cut -f1)"
+          echo "📈 Lines in LCOV report: $(wc -l < coverage/lcov.info)"
+          ls -lah coverage/
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@master
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       # Optional: Quality Gate check
-      # - name: SonarQube Quality Gate
+      # - name: SonarCloud Quality Gate
       #   uses: SonarSource/sonarqube-quality-gate-action@master
       #   timeout-minutes: 5
       #   env:

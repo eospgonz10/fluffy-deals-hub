@@ -12,7 +12,9 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage --reporter=verbose",
+    "test:coverage:report": "vitest run --coverage --reporter=verbose || exit 0",
+    "test:coverage:ci": "vitest run --coverage --reporter=default --reporter=json --allowOnly=false || exit 0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

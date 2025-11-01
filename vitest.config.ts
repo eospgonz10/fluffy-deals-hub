@@ -25,13 +25,21 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'lcov'],
       reportsDirectory: './coverage',
+      all: true, // Incluir todos los archivos incluso sin tests
+      include: ['src/**/*.{ts,tsx}'], // Incluir todo el código fuente
+      // Configuración crítica para SonarQube
+      clean: true, // Limpiar coverage anterior
+      cleanOnRerun: true,
+      reportOnFailure: true, // CRÍTICO: Generar reporte incluso con tests fallidos
       exclude: [
         'node_modules/',
         'src/test-utils.tsx',
         'vitest.setup.ts',
         '**/*.d.ts',
         '**/*.config.*',
-        '**/mockData',
+        '**/*.test.{ts,tsx}',
+        '**/*.spec.{ts,tsx}',
+        '**/mockData/**',
         'src/main.tsx',
         'src/vite-env.d.ts',
       ],

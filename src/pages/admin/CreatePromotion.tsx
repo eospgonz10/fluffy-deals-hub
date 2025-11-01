@@ -22,6 +22,22 @@ const promotionSchema = z.object({
   discount: z.coerce.number().min(1, 'Descuento debe ser mayor a 0').max(100, 'Descuento no puede ser mayor a 100'),
   startDate: z.string().min(1, 'Fecha de inicio requerida'),
   endDate: z.string().min(1, 'Fecha de fin requerida'),
+}).refine((data) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const startDate = new Date(data.startDate + 'T00:00:00');
+  startDate.setHours(0, 0, 0, 0);
+  return startDate >= today;
+}, {
+  message: 'La fecha de inicio no puede ser anterior a hoy',
+  path: ['startDate'],
+}).refine((data) => {
+  const startDate = new Date(data.startDate);
+  const endDate = new Date(data.endDate);
+  return endDate >= startDate;
+}, {
+  message: 'La fecha de fin debe ser igual o posterior a la fecha de inicio',
+  path: ['endDate'],
 });
 
 type PromotionForm = z.infer<typeof promotionSchema>;
